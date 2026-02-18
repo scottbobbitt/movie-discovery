@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FaYoutube } from "react-icons/fa";
 
 import Image from "../Image";
+import WatchlistButton from "../WatchlistButton";
 import { IMovie } from "@/types";
 import { useMediaQuery } from "usehooks-ts";
 
@@ -34,6 +35,8 @@ const MovieCard = ({
             <FaYoutube />
           </div>
         </div>
+
+        <WatchlistButton movie={{ ...movie, category }} />
       </Link>
 
       <h4 className="dark:text-gray-300 text-center cursor-default sm:text-base xs:text-[14.75px] text-[14px] font-medium ">

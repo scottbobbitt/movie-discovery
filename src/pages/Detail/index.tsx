@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { m } from "framer-motion";
 import { useParams } from "react-router-dom";
 
-import { Poster, Loader, Error, Section } from "@/common";
+import { Poster, Loader, Error, Section, WatchlistButton } from "@/common";
 import { Casts, Videos, Genre } from "./components";
 
 import { useGetShowQuery } from "@/services/TMDB";
@@ -90,6 +90,21 @@ const Detail = () => {
                 return <Genre key={genre.id} name={genre.name} />;
               })}
             </m.ul>
+
+            <m.div variants={fadeDown} className="will-change-transform motion-reduce:transform-none">
+              <WatchlistButton
+                variant="detail"
+                movie={{
+                  id: String(movie.id),
+                  poster_path: posterPath,
+                  original_title: title || "",
+                  name: name || "",
+                  overview,
+                  backdrop_path: movie.backdrop_path,
+                  category: String(category),
+                }}
+              />
+            </m.div>
 
             <m.p variants={fadeDown} className={`${paragraph} will-change-transform motion-reduce:transform-none`}>
               <span>
