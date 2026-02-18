@@ -12,7 +12,7 @@ interface WatchlistButtonProps {
 const WatchlistButton = ({ movie, variant = "card" }: WatchlistButtonProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const isSaved = useSelector((state: RootState) =>
-    state.watchlist.some((item) => item.id === movie.id)
+    state.watchlist.some((item) => String(item.id) === String(movie.id))
   );
 
   const handleClick = (e: React.MouseEvent) => {

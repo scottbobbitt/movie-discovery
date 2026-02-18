@@ -25,14 +25,15 @@ const watchlistSlice = createSlice({
   initialState: loadFromStorage(),
   reducers: {
     addToWatchlist: (state, action: PayloadAction<IWatchlistMovie>) => {
-      const exists = state.find((item) => item.id === action.payload.id);
+      const normalized = { ...action.payload, id: String(action.payload.id) };
+      const exists = state.find((item) => item.id === normalized.id);
       if (!exists) {
-        state.push(action.payload);
+        state.push(normalized);
         saveToStorage(state);
       }
     },
     removeFromWatchlist: (state, action: PayloadAction<string>) => {
-      const next = state.filter((item) => item.id !== action.payload);
+      const next = state.filter((item) => item.id !== String(action.payload));
       saveToStorage(next);
       return next;
     },
